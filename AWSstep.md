@@ -1,28 +1,42 @@
 1. 配置 putty
 
-	两篇文章的出入站规则都建立。
-	```
-	screen -S jupyter(仅仅是标记用的名字)
-	jupyter notebook --ip:0.0.0.0
-	```
+	
 
-2. download zip file
+1. download zip file
 
+```
+import urllib.request
 
+urllib.request.urlretrieve("https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/sample_submission.csv", "sample_submission.csv")
+urllib.request.urlretrieve("https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/test.zip", "test.zip")
+urllib.request.urlretrieve("https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/train.zip", "train.zip")
+```
+
+the failed one processing
 ```
 import urllib
 
-~~testfile = urllib.URLopener()~~
+testfile = urllib.URLopener()
 testfile.retrieve("https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/sample_submission.csv", "sample_submission.csv")
 testfile.retrieve("https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/test.zip", "test.zip")
 testfile.retrieve("https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/train.zip", "train.zip")
 ```
-~~no use~~
 
 	"""
 	This downloads a file from a website and names it ***.**
 	"""
-3. classify the images to different fold
+
+1. unzip the zipFile
+
+```
+import zipfile
+
+zip_ref = zipfile.ZipFile("all.zip", 'r')
+zip_ref.extractall(".")
+zip_ref.close()
+```
+
+1. classify the images to different fold
 
 ```
 import os
